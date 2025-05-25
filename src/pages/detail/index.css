@@ -1,0 +1,78 @@
+.flip-container {
+  perspective: 1000px;
+  width: 60vw;
+  height: 50vh;
+  margin: auto;
+  object-fit:cover;
+}
+/* perspective: 1000px;
+Isso define a profundidade 3D. Um valor menor (tipo 500px) dá mais inclinação ao giro. Um valor maior (2000px) deixa o giro mais suave.
+
+width e height
+Define o tamanho do “cartão”. Você pode adaptar com responsividade depois.
+
+margin: auto;
+Centraliza o componente horizontalmente.*/
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+/* position: relative;
+Torna o .flipper um contêiner de referência para os filhos .front e .back.
+
+transition: transform 0.8s;
+Faz com que a rotação seja suave, durando 0.8 segundos.
+
+transform-style: preserve-3d;
+Esta é fundamental: permite que os elementos filhos (frente e verso) sejam exibidos corretamente no espaço 3D.*/
+
+.flip-container:hover .flipper {
+  transform: rotateY(180deg);
+}
+/*Quando o mouse passa sobre o contêiner .flip-container, o .flipper gira 180 graus no eixo Y (horizontal).
+
+Esse rotateY(180deg) é o que dá o efeito de virar o cartão.*/
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+/*position: absolute;
+Coloca .front e .back uma sobre a outra na mesma posição.
+
+backface-visibility: hidden;
+Impede que o lado de trás da imagem fique visível durante o giro.
+Sem isso, você veria o verso de forma espelhada, o que fica estranho.
+
+border-radius: 12px;
+Só arredonda os cantos (estético).
+
+overflow: hidden;
+Garante que a imagem não ultrapasse os limites arredondados.*/
+
+.front img, .back img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+/*object-fit: cover;
+Faz com que a imagem preencha todo o espaço do contêiner, sem distorcer, mas pode cortar um pouco.
+
+width e height: 100%
+A imagem vai se ajustar ao tamanho do seu contêiner pai (.front ou .back).*/
+
+.back {
+  transform: rotateY(180deg);
+  
+}
+/*Esta linha já deixa o verso virado ao contrário por padrão, de forma que, quando o .flipper gira 180°, ele mostra o verso de forma correta para o usuário.
+
+Sem isso, a imagem do verso também estaria "de costas".*/

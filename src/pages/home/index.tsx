@@ -46,11 +46,11 @@ start()
            <div className="flex flex-col items-center"
            key={filme.id}>
             <h2 className="text-2xl text-pretty md:text-3xl lg:text-3xl text-center p-4 gap-4 mt-5 mb-4  font-bold text-white truncate max-w-md">{filme.title}</h2>
-           <img className="w-screen sm:w-3/4 md:w-1/2 lg:w-1/3  rounded-t-lg"
+           <img className="w-s sm:w-3/4 md:w-1/2 lg:w-1/3  rounded-t-lg"
            style={{width: '90%', maxWidth: '350px', height: '90%'}}
            src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}></img> <Link className="
            block w-[90%] max-w-[350px] text-center bg-gray-800 bg-opacity-90 p-1 rounded-b-lg hover:bg-gray-900
-           text-2xl  font-bold text-white " to={'/detail'}>Acessar</Link>
+           text-2xl  font-bold text-white " to={`/detail/${filme.id}`}>Acessar</Link>
            </div>
 
           ))}
