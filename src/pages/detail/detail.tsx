@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import './index.css'
 
 interface DetailProps{
@@ -15,6 +15,8 @@ interface DetailProps{
 export function Detail(){
 const {id} = useParams()
 const [movieDetail,setMovieDetail] = useState<DetailProps | null>(null)
+const navigate = useNavigate()
+
 useEffect(()=>{
 
     async function details(){
@@ -31,8 +33,23 @@ console.log("deu error",error)
 details()
 },[id])
 
-function handleadd(){
-alert("d")
+function handleFavorite(){
+if(!movieDetail) return
+
+const favoritos = JSON.parse(localStorage.getItem("@favoritos") || "[]");
+
+const filmeExiste = favoritos.some((filme:DetailProps) => filme.title === movieDetail.title);
+
+if(filmeExiste){
+    alert("Filme foi adicionado anteriormente!")
+}
+favoritos.push(movieDetail)
+
+localStorage.setItem("@favoritos",JSON.stringify(favoritos));
+alert("Filme adicionado com sucesso")
+
+navigate("/favoritos")
+
 }
 
     return(
@@ -77,14 +94,24 @@ alert("d")
   </div>
   </main>
 
-<button onClick={handleadd}
+
+<div className="flex gap-5">
+    <button onClick={handleFavorite}
 className="uppercase cursor-pointer font-bold rounded-md p-2 bg-black text-red-900
  hover:bg-white hover:text-red-900 transition hover:scale-110 duration-300">Adicionar Favoritos</button>
 
+      <button className="uppercase cursor-pointer font-bold rounded-md p-2 bg-black text-red-900
+ hover:bg-white hover:text-red-900 transition hover:scale-110 duration-300">
+          <a target="blank" rel="external" href={`https://youtube.com/results?search_query=${movieDetail?.title} Trailer`}>
+            Trailer
+          </a>
+        </button>
+</div>
       </div>
     ) : (
       <p className=" text-3xl font-bold h-screen  flex justify-center items-center">Carregando detalhes...</p>
     )}
+   
   </div>
     )
 }

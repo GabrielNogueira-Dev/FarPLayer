@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom"
 import type { FormEvent } from "react"
 
 
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../services/firebaseConection"
 
-export function Login(){
+export function Register(){
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 const navigate = useNavigate()
@@ -18,10 +18,10 @@ if(email === "" || password ===""){
     return
 }
 
-signInWithEmailAndPassword(auth,email,password)
+createUserWithEmailAndPassword(auth,email,password)
     .then((userCredential)=>{
         console.log("Voce foi Logado",userCredential.user)
-        navigate("/",{replace:true})
+        navigate("/login",{replace:true})
     })
     .catch((error)=>{
         console.log("deu error", error.message)
@@ -38,7 +38,7 @@ signInWithEmailAndPassword(auth,email,password)
              dark:bg-gray-900 dark:ring-gray-700"
 >
   <h2 className="text-3xl font-extrabold text-center text-gray-900 dark:text-white mb-8">
-    Login
+    Cadastre-se
   </h2>
 
   <label
@@ -85,7 +85,7 @@ signInWithEmailAndPassword(auth,email,password)
                font-bold rounded-md shadow-md
                transition duration-300 ease-in-out hover:scale-105 transform "
   >
-  Fazer Login
+    Criar conta
   </button>
 </form>
  </div>

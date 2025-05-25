@@ -1,8 +1,9 @@
 
-import { type ReactNode,useEffect, useState } from "react";
+import type {  ReactNode } from "react";
 import { auth } from "../services/firebaseConection";
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 
 interface PrivetProps{
     children:ReactNode;
@@ -26,6 +27,7 @@ if(user){
    setSigned(false);
 }
     })
+  return unsub;
 },[])
 
 if(loading){
@@ -33,7 +35,7 @@ if(loading){
 }
 
 if(!signed){
-    return <Navigate to="/login" />
+    return <Navigate to="/register" />
 }
 
 return children

@@ -5,13 +5,19 @@ import './index.css'
 import { Home } from './pages/home'
 import { Detail } from './pages/detail/detail'
 import { Error } from './pages/error'
-import { Login } from './pages/login/login'
+import { Register } from './pages/register/register'
 import { Private } from './routes/private'
+import { Login } from './pages/login/login'
+import { Favoritos } from './pages/favoritos/favoritos'
 
 const router = createBrowserRouter([
   {
-    path:"/login",
-    element:<Login/>
+    path:"/register",
+    element:<Register/>
+  },
+  {
+path:"/login",
+element:<Login/>
   },
   {
     path:"/",
@@ -20,6 +26,10 @@ const router = createBrowserRouter([
   {
     path:"/detail/:id",
     element:<Private><Detail/></Private>
+  },
+  {
+path:"/favoritos",
+element:<Favoritos/>
   },
   {
     path:"*",

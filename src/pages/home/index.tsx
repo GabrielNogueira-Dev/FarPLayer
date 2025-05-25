@@ -10,7 +10,7 @@ interface MovieProps{
 
 export function Home(){
     const [movies,setMovies] = useState<MovieProps[]>([])
-
+    
 
     useEffect(()=>{
 
