@@ -6,6 +6,7 @@ import { Home } from './pages/home'
 import { Detail } from './pages/detail/detail'
 import { Error } from './pages/error'
 import { Login } from './pages/login/login'
+import { Private } from './routes/private'
 
 const router = createBrowserRouter([
   {
@@ -14,11 +15,11 @@ const router = createBrowserRouter([
   },
   {
     path:"/",
-    element:<Home/>
+    element:<Private><Home/></Private>
   },
   {
     path:"/detail/:id",
-    element:<Detail/>
+    element:<Private><Detail/></Private>
   },
   {
     path:"*",
