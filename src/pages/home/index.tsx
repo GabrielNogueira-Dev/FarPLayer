@@ -41,12 +41,12 @@ start()
               <h1  style={{ textShadow: "5px 4px 3px rgba(0,0,0,0.7)" }} className=" p-3 
               font-mono text-3xl mt-5 text-white font-bold  rounded-md uppercase">Far Player</h1>
           </div>
-          <div className="grid grid-cols-3 gap-4 mt-4 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 ">
           {movies.map((filme)=>(
            <div className="flex flex-col items-center"
            key={filme.id}>
-            <h2 className="text-center p-4 gap-4 mt-5 mb-4 text-2xl font-bold text-white truncate max-w-md">{filme.title}</h2>
-           <img className="rounded-t-lg"
+            <h2 className="text-2xl text-pretty md:text-3xl lg:text-3xl text-center p-4 gap-4 mt-5 mb-4  font-bold text-white truncate max-w-md">{filme.title}</h2>
+           <img className="w-screen sm:w-3/4 md:w-1/2 lg:w-1/3  rounded-t-lg"
            style={{width: '90%', maxWidth: '350px', height: '90%'}}
            src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}></img> <Link className="
            block w-[90%] max-w-[350px] text-center bg-gray-800 bg-opacity-90 p-1 rounded-b-lg hover:bg-gray-900
