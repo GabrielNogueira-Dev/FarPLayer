@@ -1,7 +1,9 @@
 
 import { useEffect,useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 
 interface DetailProps{
+    id:string;
     title:string;
     backdrop_path:string;
     overview:string;
@@ -12,13 +14,14 @@ interface DetailProps{
 }
 
 export function Favoritos(){
-
+const navigate = useNavigate()
 const [favoritos,setFavoritos] = useState<DetailProps[]>([])
 
 useEffect(()=>{
     const filmesSalvos = localStorage.getItem("@favoritos")
 if(filmesSalvos){
-    setFavoritos(JSON.parse(filmesSalvos))
+    setFavoritos(JSON.parse(filmesSalvos) || [])
+    
 }
 },[])
 
@@ -31,13 +34,13 @@ localStorage.setItem("@favoritos",JSON.stringify(novoFavorito))
 
 if (favoritos.length === 0) {
     return (
-      <div className="min-h-screen bg-red-900 flex justify-center items-center">
-        <h2 className="text-white text-3xl font-bold">
+      <div className="flex flex-col min-h-screen bg-red-900 flex justify-center items-center">
+          <h2 className="text-white text-3xl font-bold">
           Nenhum filme favorito adicionado.
-          <br />
-          Adicione um filme aos seus favoritos!
-        </h2>
+        </h2><br />
+        <h3 className="text-2xl border- text-gray-900 "><Link to="/">Adicione um filme aos seus favoritos aqui!</Link></h3>
       </div>
+      
     );
   }
 
@@ -60,7 +63,7 @@ if (favoritos.length === 0) {
             />
             <button
               onClick={() => removerFavorito(filme.title)}
-              className="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 m-4 rounded"
+              className="cursor-pointer bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 m-4 rounded"
             >
               Remover
             </button>

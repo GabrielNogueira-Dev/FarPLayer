@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import './index.css'
 
 interface DetailProps{
+    id:string;
     title:string;
     backdrop_path:string;
     overview:string;
@@ -38,17 +39,19 @@ if(!movieDetail) return
 
 const favoritos = JSON.parse(localStorage.getItem("@favoritos") || "[]");
 
-const filmeExiste = favoritos.some((filme:DetailProps) => filme.title === movieDetail.title);
+const filmeExiste = favoritos.some((filme:DetailProps) => filme.id === movieDetail.id);
 
 if(filmeExiste){
     alert("Filme foi adicionado anteriormente!")
-}
-favoritos.push(movieDetail)
+    
+}else{
+    favoritos.push(movieDetail)
 
 localStorage.setItem("@favoritos",JSON.stringify(favoritos));
 alert("Filme adicionado com sucesso")
+}
 
-navigate("/favoritos")
+navigate("/favoritos");
 
 }
 
@@ -97,6 +100,7 @@ navigate("/favoritos")
 
 <div className="flex gap-5">
     <button onClick={handleFavorite}
+   
 className="uppercase cursor-pointer font-bold rounded-md p-2 bg-black text-red-900
  hover:bg-white hover:text-red-900 transition hover:scale-110 duration-300">Adicionar Favoritos</button>
 
