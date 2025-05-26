@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 import './index.css'
+import { toast } from 'react-toastify'
 
 interface DetailProps{
     id:string;
@@ -42,13 +43,13 @@ const favoritos = JSON.parse(localStorage.getItem("@favoritos") || "[]");
 const filmeExiste = favoritos.some((filme:DetailProps) => filme.id === movieDetail.id);
 
 if(filmeExiste){
-    alert("Filme foi adicionado anteriormente!")
+    toast.error("Filme já foi adicionado anteriormente!")
     
 }else{
     favoritos.push(movieDetail)
 
 localStorage.setItem("@favoritos",JSON.stringify(favoritos));
-alert("Filme adicionado com sucesso")
+toast.success("Filme adicionado com sucesso!")
 }
 
 navigate("/favoritos");

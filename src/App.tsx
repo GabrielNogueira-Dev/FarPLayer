@@ -1,6 +1,7 @@
-
+import 'react-toastify/dist/ReactToastify.css';
 import { createBrowserRouter } from 'react-router-dom'
 import './index.css'
+
 
 import { Home } from './pages/home'
 import { Detail } from './pages/detail/detail'

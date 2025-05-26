@@ -1,4 +1,4 @@
-
+import { toast } from 'react-toastify'
 import { useEffect,useState } from "react"
 import { Link } from "react-router-dom";
 
@@ -25,11 +25,11 @@ if(filmesSalvos){
 }
 },[])
 
-function removerFavorito(remove:string){
-const novoFavorito = favoritos.filter(filme => filme.title !== remove)
+function removerFavorito(id:string){
+const novoFavorito = favoritos.filter(filme => filme.id !== id)
 setFavoritos(novoFavorito)
 localStorage.setItem("@favoritos",JSON.stringify(novoFavorito))
-
+toast.success("filme removido com sucesso!")
 }
 
 if (favoritos.length === 0) {
@@ -62,7 +62,7 @@ if (favoritos.length === 0) {
               style={{ maxHeight: "350px" }}
             />
             <button
-              onClick={() => removerFavorito(filme.title)}
+              onClick={() => removerFavorito(filme.id)}
               className="cursor-pointer bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 m-4 rounded"
             >
               Remover
