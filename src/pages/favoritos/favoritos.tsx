@@ -1,6 +1,6 @@
 
 import { useEffect,useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface DetailProps{
     id:string;
@@ -14,7 +14,7 @@ interface DetailProps{
 }
 
 export function Favoritos(){
-const navigate = useNavigate()
+
 const [favoritos,setFavoritos] = useState<DetailProps[]>([])
 
 useEffect(()=>{
@@ -34,7 +34,7 @@ localStorage.setItem("@favoritos",JSON.stringify(novoFavorito))
 
 if (favoritos.length === 0) {
     return (
-      <div className="flex flex-col min-h-screen bg-red-900 flex justify-center items-center">
+      <div className=" flex-col min-h-screen bg-red-900 flex justify-center items-center">
           <h2 className="text-white text-3xl font-bold">
           Nenhum filme favorito adicionado.
         </h2><br />
